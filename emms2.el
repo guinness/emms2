@@ -13,16 +13,17 @@
 
 (defun emms2-add-song ()
   "Adss a song to the playlist"
-  (process (apply 'start-process
-		  "xmms2 player"
-		  nil
-		  "xmms2"
-		  ;; some comment
-		  )))
+  (interactive)
+  (let ((filename (file-truename (read-file-name "file :" "~/" nil t))))
+    (if (file-regular-p filename)
+	(start-process "xmms2" nil "xmms2" "add" filename))))
 
-(defun emms2-add-folder ()
-  "Adds a folder to the playlist"
-)
+(defun emms2-add-directory ()
+  "Adss a directory to the playlist"
+  (interactive)
+  (let ((filename (file-truename (read-file-name "directory :" "~/" nil t))))
+    (if (file-directory-p filename)
+	(start-process "xmms2" nil "xmms2" "radd" filename))))
 
 (defun emms2-clear ()
   "Clears the current playlist"
