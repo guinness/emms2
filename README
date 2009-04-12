@@ -1,0 +1,18 @@
+                                    EMMS2
+===============================================================================
+
+EMMS2 is an emacs interface to control an XMMS2 player.  To add this
+functionnality to emacs, simply add :
+
+(add-to-list 'load-path "~/path/to/emms2")
+(require 'emms2)
+
+to your ~/.emacs file.
+
+If you have any questions, comments or insults, e-mail :
+
+Emmanuel Boudreault
+guinness@step.polymtl.ca
+
+Cheers,
+guinness
