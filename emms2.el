@@ -60,5 +60,22 @@
   (interactive)
   (start-process "xmms2" nil "xmms2" "shuffle"))
 
+(defun status-filter (proc string)
+  (save-selected-window
+    (save-excursion
+      (pop-to-buffer (process-buffer proc))
+      (set-buffer (process-buffer proc))
+      (erase-buffer)
+      (insert (substring string 1))
+      (fit-window-to-buffer))))
+
+(defun emms2-status ()
+  "Shows the status of the XMMS2 player"
+  (interactive)
+  (set-process-filter
+   (start-process "xmms2-status" "*XMMS2-status*" "xmms2" "status")
+   'status-filter))
+    
+
 (provide 'emms2)
 ;;; emms2.el ends here
